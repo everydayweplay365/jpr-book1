@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JPR Book 1 — Bear's Box 🐻 Bb</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bear: #8B5E3C;
+  --honey: #F5A623;
+  --gold: #FFD93D;
+  --sky: #87CEEB;
+  --grass: #5DBB63;
+  --cream: #FFF8F0;
+  --soft: #FEF3E2;
+  --coral: #FF6B6B;
+  --purple: #A855F7;
+  --r: 18px;
+  --shadow: 0 8px 28px rgba(0,0,0,0.11);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:#2D2D2D;overflow-x:hidden;}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(160deg,#87CEEB 0%,#B0E0FF 40%,#C8F0C0 100%);
+  padding:0;min-height:340px;position:relative;overflow:hidden;
+}
+.clouds{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+.cloud{position:absolute;background:white;border-radius:50px;opacity:0.8;}
+.cloud::before,.cloud::after{content:'';position:absolute;background:white;border-radius:50%;}
+.c1{width:120px;height:40px;top:30px;left:5%;animation:drift 18s linear infinite;}
+.c1::before{width:60px;height:60px;top:-30px;left:15px;}
+.c1::after{width:40px;height:40px;top:-20px;left:55px;}
+.c2{width:90px;height:30px;top:60px;left:55%;animation:drift 24s linear infinite 4s;}
+.c2::before{width:50px;height:50px;top:-25px;left:10px;}
+.c2::after{width:30px;height:30px;top:-15px;left:45px;}
+@keyframes drift{from{transform:translateX(-200px);}to{transform:translateX(110vw);}}
+
+.hero-inner{
+  max-width:860px;margin:0 auto;padding:36px 20px 24px;
+  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+  position:relative;z-index:2;
+}
+.bear-char{
+  font-size:110px;line-height:1;
+  animation:bear-bounce 2.5s ease-in-out infinite;
+  filter:drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+  flex-shrink:0;
+}
+@keyframes bear-bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.hero-text{}
+.book-label{
+  display:inline-block;background:var(--bear);color:white;
+  font-family:'Fredoka One',cursive;font-size:14px;letter-spacing:2px;
+  padding:4px 14px;border-radius:30px;margin-bottom:10px;
+}
+.hero-title{
+  font-family:'Fredoka One',cursive;
+  font-size:clamp(32px,6vw,52px);
+  color:#2D2D2D;
+  line-height:1.1;margin-bottom:8px;
+  text-shadow:2px 2px 0 rgba(255,255,255,0.6);
+}
+.hero-sub{
+  font-size:16px;font-weight:700;color:#4a3500;
+  margin-bottom:16px;line-height:1.5;
+}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.htag{
+  background:white;border-radius:30px;
+  padding:5px 14px;font-size:12px;font-weight:800;
+  color:#4a3500;box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ── NAV TABS ── */
+.nav{
+  background:white;border-bottom:3px solid var(--gold);
+  position:sticky;top:0;z-index:50;
+  box-shadow:0 2px 12px rgba(0,0,0,0.08);
+}
+.nav-inner{
+  max-width:860px;margin:0 auto;
+  display:flex;overflow-x:auto;gap:0;
+}
+.nav-inner::-webkit-scrollbar{display:none;}
+.ntab{
+  padding:14px 20px;font-size:14px;font-weight:800;
+  color:#888;border:none;background:none;cursor:pointer;
+  white-space:nowrap;border-bottom:3px solid transparent;
+  margin-bottom:-3px;transition:all 0.2s;font-family:'Nunito',sans-serif;
+}
+.ntab:hover{color:var(--bear);}
+.ntab.active{color:var(--bear);border-bottom-color:var(--bear);}
+
+/* ── SECTIONS ── */
+.main{max-width:860px;margin:0 auto;padding:28px 16px 60px;}
+.section{display:none;animation:fadein 0.3s ease;}
+.section.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── SECTION HEADING ── */
+.sec-head{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:22px;
+}
+.sec-icon{
+  width:44px;height:44px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;flex-shrink:0;
+}
+.sec-title{font-family:'Fredoka One',cursive;font-size:22px;letter-spacing:0.5px;}
+.sec-sub{font-size:13px;color:#777;font-weight:600;margin-top:2px;}
+
+/* ── CARDS ── */
+.card{
+  background:white;border-radius:var(--r);
+  box-shadow:var(--shadow);padding:22px 24px;margin-bottom:16px;
+}
+.card-accent-top{border-top:5px solid var(--honey);}
+
+/* ── LETTER HERO ── */
+.letter-display{
+  text-align:center;padding:32px 20px;
+  background:linear-gradient(135deg,#FEF3E2,#FFF8F0);
+  border-radius:var(--r);margin-bottom:16px;
+  border:2px dashed var(--gold);
+}
+.big-letter{
+  font-family:'Fredoka One',cursive;
+  font-size:120px;line-height:1;
+  color:var(--bear);
+  text-shadow:4px 4px 0 var(--gold);
+  display:block;margin-bottom:8px;
+  animation:letter-pulse 3s ease-in-out infinite;
+}
+@keyframes letter-pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+.sound-label{
+  font-size:18px;font-weight:800;color:var(--bear);
+  margin-bottom:16px;display:block;
+}
+.speak-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--honey);color:white;border:none;
+  border-radius:30px;padding:12px 28px;
+  font-size:16px;font-weight:800;cursor:pointer;
+  font-family:'Nunito',sans-serif;
+  box-shadow:0 4px 12px rgba(245,166,35,0.35);
+  transition:transform 0.15s,box-shadow 0.15s;
+}
+.speak-btn:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(245,166,35,0.4);}
+.speak-btn:active{transform:scale(0.97);}
+
+/* ── WORD GRID ── */
+.word-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
+  gap:12px;margin-bottom:16px;
+}
+.word-card{
+  background:white;border-radius:14px;
+  border:2.5px solid #F0E8D8;
+  padding:14px 10px;text-align:center;
+  cursor:pointer;transition:all 0.18s;
+  box-shadow:0 3px 10px rgba(0,0,0,0.07);
+}
+.word-card:hover{
+  border-color:var(--honey);
+  transform:translateY(-3px);
+  box-shadow:0 8px 20px rgba(245,166,35,0.2);
+}
+.word-emoji{font-size:36px;display:block;margin-bottom:6px;}
+.word-en{
+  font-family:'Fredoka One',cursive;
+  font-size:17px;color:var(--bear);
+  display:block;margin-bottom:2px;
+}
+.word-zh{font-size:12px;color:#888;font-weight:700;}
+.word-b{color:var(--coral);}
+
+/* ── STORY PANELS ── */
+.story-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+.story-panel{
+  background:white;border-radius:var(--r);
+  box-shadow:var(--shadow);overflow:hidden;
+  cursor:pointer;transition:transform 0.18s;
+}
+.story-panel:hover{transform:translateY(-4px);}
+.panel-art{
+  height:120px;display:flex;align-items:center;
+  justify-content:center;font-size:56px;
+}
+.panel-body{padding:14px 16px;}
+.panel-page{font-size:11px;font-weight:800;color:#aaa;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.panel-text{font-size:15px;font-weight:800;margin-bottom:6px;}
+.panel-zh{font-size:12px;color:#888;line-height:1.5;}
+.play-chip{
+  display:inline-block;background:var(--sky);color:white;
+  font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;
+  margin-top:6px;cursor:pointer;border:none;font-family:'Nunito',sans-serif;
+}
+
+/* ── SONG LYRICS ── */
+.lyrics-box{
+  background:linear-gradient(135deg,#FEF9E7,#FFF8F0);
+  border:2px solid var(--gold);border-radius:var(--r);
+  padding:28px 24px;text-align:center;margin-bottom:16px;
+}
+.lyrics-line{
+  font-family:'Fredoka One',cursive;font-size:20px;
+  color:#4a3500;margin-bottom:10px;line-height:1.5;
+  opacity:0;animation:lyric-appear 0.4s ease forwards;
+}
+@keyframes lyric-appear{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.b-word{color:var(--coral);text-decoration:underline;text-decoration-color:var(--gold);}
+.lyric-controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+.lyric-btn{
+  padding:10px 22px;border-radius:30px;border:none;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;
+  cursor:pointer;transition:transform 0.15s;
+}
+.lyric-btn:hover{transform:scale(1.05);}
+
+/* ── GAMES ── */
+.game-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.gtab{
+  padding:9px 18px;border-radius:30px;border:2.5px solid #eee;
+  background:#fafafa;font-family:'Nunito',sans-serif;
+  font-weight:800;font-size:13px;cursor:pointer;transition:all 0.15s;
+}
+.gtab.on{background:var(--honey);color:white;border-color:var(--honey);}
+.game-area{min-height:280px;}
+
+/* game: b-match */
+.bmatch-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0;}
+.bmatch-col{display:flex;flex-direction:column;gap:8px;}
+.bm-item{
+  padding:12px;border-radius:12px;border:2.5px solid #eee;
+  font-size:16px;font-weight:800;cursor:pointer;text-align:center;
+  background:#fafafa;transition:all 0.15s;
+}
+.bm-item:hover{border-color:var(--honey);background:#FEF3E2;}
+.bm-item.sel{border-color:var(--honey);background:#FFD93D44;}
+.bm-item.matched{border-color:var(--grass);background:#E8F5E9;pointer-events:none;}
+.match-msg{text-align:center;font-weight:800;font-size:16px;color:var(--grass);min-height:28px;margin-top:8px;}
+
+/* game: b-spell */
+.spell-word{
+  font-family:'Fredoka One',cursive;font-size:40px;
+  color:var(--bear);text-align:center;margin:8px 0 4px;letter-spacing:4px;
+}
+.spell-hint{font-size:13px;text-align:center;color:#888;font-weight:700;margin-bottom:14px;}
+.spell-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.spell-opt{
+  padding:14px;border-radius:14px;border:2.5px solid #eee;
+  background:#fafafa;font-size:28px;cursor:pointer;
+  text-align:center;transition:all 0.15s;
+}
+.spell-opt:hover{border-color:var(--sky);background:#E3F2FD;}
+.spell-opt.correct{border-color:var(--grass);background:#E8F5E9;}
+.spell-opt.wrong{border-color:var(--coral);background:#FFEBEE;}
+
+/* game: b-trace */
+.trace-wrap{text-align:center;}
+.trace-info{font-size:13px;color:#888;font-weight:700;margin-bottom:8px;}
+canvas#traceCanvas{
+  border:3px dashed var(--gold);border-radius:16px;
+  cursor:crosshair;background:#fffdf5;touch-action:none;
+}
+.trace-tools{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap;}
+.t-btn{
+  padding:8px 16px;border-radius:20px;border:none;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;cursor:pointer;
+}
+
+/* ── PARENT GUIDE ── */
+.guide-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+.guide-step{
+  background:white;border-radius:var(--r);
+  box-shadow:var(--shadow);padding:18px 20px;
+  border-left:5px solid var(--honey);
+}
+.step-num{
+  font-family:'Fredoka One',cursive;font-size:28px;
+  color:var(--gold);margin-bottom:4px;
+}
+.step-label{font-size:15px;font-weight:800;margin-bottom:6px;}
+.step-desc{font-size:13px;color:#666;line-height:1.6;}
+.step-phrase{
+  background:var(--soft);border-radius:10px;
+  padding:8px 12px;margin-top:10px;
+  font-size:13px;font-weight:700;color:var(--bear);
+  font-style:italic;line-height:1.5;
+}
+
+.activity-card{
+  background:white;border-radius:var(--r);
+  box-shadow:var(--shadow);padding:20px 22px;
+  margin-bottom:14px;display:flex;gap:16px;align-items:flex-start;
+}
+.act-icon{font-size:32px;flex-shrink:0;margin-top:2px;}
+.act-label{
+  display:inline-block;font-size:10px;font-weight:800;
+  padding:2px 8px;border-radius:20px;margin-bottom:6px;
+  letter-spacing:1px;
+}
+.act-title{font-size:15px;font-weight:800;margin-bottom:4px;}
+.act-desc{font-size:13px;color:#666;line-height:1.6;}
+
+/* ── PROGRESS BADGE ── */
+.progress-hero{
+  background:linear-gradient(135deg,var(--bear),#C4843A);
+  border-radius:var(--r);padding:28px 24px;
+  color:white;text-align:center;margin-bottom:16px;
+}
+.prog-num{font-family:'Fredoka One',cursive;font-size:52px;line-height:1;}
+.prog-label{font-size:14px;font-weight:700;opacity:0.9;margin-bottom:20px;}
+.prog-bar-wrap{background:rgba(255,255,255,0.25);border-radius:30px;height:14px;overflow:hidden;}
+.prog-bar{background:var(--gold);height:100%;border-radius:30px;width:3%;transition:width 1s ease;}
+.star-row{display:flex;gap:6px;justify-content:center;margin-top:16px;}
+.star{font-size:24px;filter:grayscale(1);transition:filter 0.3s;}
+.star.on{filter:none;}
+
+.streak-row{
+  display:flex;gap:8px;margin-top:12px;justify-content:center;
+}
+.day-dot{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;color:white;
+}
+.day-dot.done{background:var(--gold);color:#4a3500;}
+.day-dot.today{background:white;color:var(--bear);}
+
+/* ── MISC ── */
+.chip{
+  display:inline-block;font-size:11px;font-weight:800;
+  padding:3px 10px;border-radius:20px;letter-spacing:0.5px;
+}
+.chip-s{background:#E3F2FD;color:#1565C0;}
+.chip-t{background:#F3E5F5;color:#6A1B9A;}
+.chip-e{background:#E8F5E9;color:#2E7D32;}
+.chip-a{background:#FFF3E0;color:#E65100;}
+.chip-m{background:#FCE4EC;color:#AD1457;}
+
+.footer{
+  background:var(--bear);color:white;
+  text-align:center;padding:28px 20px;
+}
+.footer-title{font-family:'Fredoka One',cursive;font-size:20px;margin-bottom:6px;}
+.footer-sub{font-size:13px;opacity:0.8;}
+
+/* score popup */
+.score-pop{
+  display:none;position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(0.5);
+  background:white;border-radius:24px;padding:32px 40px;
+  text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.25);
+  z-index:200;transition:transform 0.3s,opacity 0.3s;opacity:0;
+}
+.score-pop.show{display:block;transform:translate(-50%,-50%) scale(1);opacity:1;}
+.pop-emoji{font-size:64px;display:block;margin-bottom:12px;}
+.pop-title{font-family:'Fredoka One',cursive;font-size:28px;color:var(--bear);margin-bottom:6px;}
+.pop-sub{font-size:14px;color:#888;}
+.pop-close{
+  margin-top:16px;padding:10px 28px;background:var(--honey);
+  color:white;border:none;border-radius:30px;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;cursor:pointer;
+}
+
+@media(max-width:600px){
+  .hero-inner{flex-direction:column;text-align:center;}
+  .bear-char{font-size:80px;}
+  .big-letter{font-size:90px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="clouds">
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="bear-char">🐻</div>
+    <div class="hero-text">
+      <div class="book-label">📚 JPR Book 1 · 起始子音</div>
+      <div class="hero-title">Bear's Box</div>
+      <div class="hero-sub">小熊的神秘箱子裡藏著什麼？<br>跟著 <strong>Bb</strong> 一起發現驚喜！</div>
+      <div class="hero-tags">
+        <span class="htag">🔤 Phonics: /b/</span>
+        <span class="htag">🎵 Song + Chant</span>
+        <span class="htag">👶 幼兒適齡</span>
+        <span class="htag">⏱ 15分鐘/天</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <button class="ntab active" onclick="showTab('letter')">🔤 認識 Bb</button>
+    <button class="ntab" onclick="showTab('words')">📖 單字寶庫</button>
+    <button class="ntab" onclick="showTab('story')">📕 故事時間</button>
+    <button class="ntab" onclick="showTab('song')">🎵 歌謠跟唱</button>
+    <button class="ntab" onclick="showTab('games')">🎮 一起玩！</button>
+    <button class="ntab" onclick="showTab('guide')">👨‍👩‍👧 爸媽指南</button>
+    <button class="ntab" onclick="showTab('progress')">🏆 我的進度</button>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ══ TAB: LETTER ══ -->
+<div class="section active" id="tab-letter">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#FEF3E2;">🔤</div>
+    <div>
+      <div class="sec-title">認識字母 Bb</div>
+      <div class="sec-sub">今天的主角！發出 /b/ /b/ /b/ 的聲音</div>
+    </div>
+  </div>
+
+  <div class="letter-display">
+    <span class="big-letter">Bb</span>
+    <span class="sound-label">發音：/b/ — 就像嘴巴噴出一口氣！💨</span>
+    <div id="phonicsWaveAnim" style="font-size:28px;transition:all 0.3s;opacity:0;margin-bottom:8px;">〰️〰️〰️</div>
+    <button class="speak-btn" onclick="speakLetter()">🔊 聽 /b/ 的聲音！</button>
+    <div style="font-size:12px;color:#888;margin-top:10px;font-weight:700;">🎙️ Ella 聲音（TypeCast AI）· 播放：b... b... b... bat · bee · bear</div>
+  </div>
+
+  <div class="card card-accent-top" style="margin-bottom:16px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+      <span style="font-size:28px;">💡</span>
+      <div>
+        <div style="font-size:15px;font-weight:800;margin-bottom:3px;">怎麼發出 /b/ 的聲音？</div>
+        <div style="font-size:13px;color:#888;">跟著步驟，和爸爸媽媽一起練習！</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;">
+      <div style="background:#FEF9E7;border-radius:12px;padding:14px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:6px;">👄</div>
+        <div style="font-size:13px;font-weight:800;margin-bottom:3px;">Step 1</div>
+        <div style="font-size:12px;color:#666;">閉上嘴巴，讓嘴唇輕輕碰在一起</div>
+      </div>
+      <div style="background:#E8F5E9;border-radius:12px;padding:14px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:6px;">💪</div>
+        <div style="font-size:13px;font-weight:800;margin-bottom:3px;">Step 2</div>
+        <div style="font-size:12px;color:#666;">憋住氣，讓肚子用力</div>
+      </div>
+      <div style="background:#E3F2FD;border-radius:12px;padding:14px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:6px;">💨</div>
+        <div style="font-size:13px;font-weight:800;margin-bottom:3px;">Step 3</div>
+        <div style="font-size:12px;color:#666;">嘴唇打開，氣往外噴！<strong>/b/!</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:15px;font-weight:800;margin-bottom:12px;">🐝 蜜蜂遊戲：一起飛！</div>
+    <div style="font-size:14px;color:#555;line-height:1.8;background:#FEF9E7;border-radius:12px;padding:14px;">
+      <strong>媽媽/爸爸說：</strong><em>「bee（蜜蜂）發出 buzz 的聲音，在花上飛舞採蜂蜜。我們也跟 bee 一樣唸唸看 /b/ /b/ /b/ buzz 好不好？」</em><br>
+      <strong>孩子說：</strong><em>「/b/ /b/ /b/ buzz, buzz, buzz!」</em><br>
+      <span style="color:var(--coral);font-weight:800;">⚠️ 注意：/b/ 是嘴唇爆破的短聲，<u>不是</u>唸「bee」字母名！</span><br>
+      <span style="color:var(--grass);font-weight:800;">💡 模仿蜜蜂飛舞並發出 buzz 的聲音！</span>
+      <div style="margin-top:10px;">
+        <button class="speak-btn" style="font-size:13px;padding:8px 20px;" onclick="playBSound(3)">🔊 聽 buh · buh · buh</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:15px;font-weight:800;margin-bottom:12px;">📝 用身體寫出 Bb！</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div style="background:#FEF3E2;border-radius:12px;padding:16px;text-align:center;">
+        <div style="font-family:'Fredoka One',cursive;font-size:56px;color:var(--bear);line-height:1;margin-bottom:8px;">B</div>
+        <div style="font-size:13px;color:#666;">大寫 B — 用手臂做出直線和兩個圓！</div>
+      </div>
+      <div style="background:#FEF3E2;border-radius:12px;padding:16px;text-align:center;">
+        <div style="font-family:'Fredoka One',cursive;font-size:56px;color:var(--bear);line-height:1;margin-bottom:8px;">b</div>
+        <div style="font-size:13px;color:#666;">小寫 b — 直線再加一個肚子圓！</div>
+      </div>
+    </div>
+    <button class="speak-btn" style="margin-top:14px;width:100%;justify-content:center;" onclick="speakLetter()">🔊 /b/ /b/ /b/ — bat！bee！bear！</button>
+  </div>
+</div>
+
+<!-- ══ TAB: WORDS ══ -->
+<div class="section" id="tab-words">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#FFF3E0;">📖</div>
+    <div>
+      <div class="sec-title">Bb 單字寶庫</div>
+      <div class="sec-sub">點擊每個字，聽聽發音！</div>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,#FEF3E2,white);border-radius:var(--r);padding:16px 18px;margin-bottom:18px;border:2px solid var(--gold);">
+    <div style="font-size:14px;font-weight:800;margin-bottom:6px;">📦 Bear's Box 裡有什麼？</div>
+    <div style="font-size:13px;color:#666;line-height:1.6;">小熊的神秘箱子裡裝滿了 <strong>B</strong> 開頭的東西！點擊每個單字聽聽看發音，找一找哪個字母是 <span style="color:var(--coral);font-weight:800;">B</span>！</div>
+  </div>
+
+  <div class="word-grid" id="wordGrid"></div>
+
+  <div class="card" style="margin-top:4px;">
+    <div style="font-size:14px;font-weight:800;margin-bottom:10px;">🎯 常出現的單字（Sight Words）</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span style="background:#E3F2FD;color:#1565C0;padding:6px 16px;border-radius:30px;font-weight:800;font-size:15px;cursor:pointer;" onclick="speakPhrase('the')">the</span>
+      <span style="background:#E3F2FD;color:#1565C0;padding:6px 16px;border-radius:30px;font-weight:800;font-size:15px;cursor:pointer;" onclick="speakPhrase('in')">in</span>
+      <span style="background:#E3F2FD;color:#1565C0;padding:6px 16px;border-radius:30px;font-weight:800;font-size:15px;cursor:pointer;" onclick="speakPhrase('and')">and</span>
+      <span style="background:#E3F2FD;color:#1565C0;padding:6px 16px;border-radius:30px;font-weight:800;font-size:15px;cursor:pointer;" onclick="speakPhrase('a')">a</span>
+      <span style="background:#E3F2FD;color:#1565C0;padding:6px 16px;border-radius:30px;font-weight:800;font-size:15px;cursor:pointer;" onclick="speakPhrase('big')">big</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TAB: STORY ══ -->
+<div class="section" id="tab-story">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#E8F5E9;">📕</div>
+    <div>
+      <div class="sec-title">故事時間</div>
+      <div class="sec-sub">Bear 的箱子裡究竟藏著什麼？</div>
+    </div>
+  </div>
+
+  <div class="card" style="background:linear-gradient(135deg,#FEF3E2,white);margin-bottom:18px;">
+    <div style="display:flex;gap:14px;align-items:flex-start;">
+      <div style="font-size:48px;">🐻</div>
+      <div>
+        <div style="font-size:15px;font-weight:800;margin-bottom:6px;">關於小熊 Bear</div>
+        <div style="font-size:13px;color:#666;line-height:1.7;">Bear 是我們學字母 <strong>Bb</strong> 的動物好朋友！他最喜歡 <strong>B</strong> 這個字母，因為它是 Bear（熊）的第一個字母，也是他最喜歡的運動 <strong>baseball</strong>（棒球）的第一個字母。Bear 是好奇寶寶，非常想知道生日禮物盒裡有什麼！</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size:15px;font-weight:800;margin-bottom:12px;">📖 翻開繪本，一頁一頁讀！</div>
+  <div class="story-grid" id="storyGrid"></div>
+
+  <div class="card" style="margin-top:4px;">
+    <div style="font-size:14px;font-weight:800;margin-bottom:10px;">💬 閱讀中這樣說</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="background:#FEF3E2;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.6;">
+        <strong>🔍 閱讀前：</strong><br>
+        "What do you see on the cover?" 封面看到了什麼？<br>
+        "What do you think Bear will do?" 小熊會做什麼？
+      </div>
+      <div style="background:#E8F5E9;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.6;">
+        <strong>📖 閱讀中：</strong><br>
+        "What is in Bear's box?" 箱子裡有什麼？<br>
+        "Can you say the word bat?" 你能唸出 bat 嗎？
+      </div>
+      <div style="background:#E3F2FD;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.6;">
+        <strong>✅ 閱讀後：</strong><br>
+        "What letter makes the /b/ sound?" 哪個字母發 /b/ 音？<br>
+        "Can you make the letter Bb with your body?" 用身體做出 Bb！
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TAB: SONG ══ -->
+<div class="section" id="tab-song">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#F3E5F5;">🎵</div>
+    <div>
+      <div class="sec-title">歌謠跟唱</div>
+      <div class="sec-sub">跟著節拍，讓 Bb 的聲音烙印在腦中！</div>
+    </div>
+  </div>
+
+  <div class="lyrics-box" id="lyricsBox">
+    <div style="font-size:13px;color:#888;font-weight:700;margin-bottom:16px;">🎵 Bear's Box — Bb Song</div>
+    <div id="lyricsInner"></div>
+    <div class="lyric-controls">
+      <button class="lyric-btn" style="background:var(--honey);color:white;" onclick="playLyrics()">▶ 開始唱！</button>
+      <button class="lyric-btn" style="background:var(--sky);color:white;" onclick="speakPhrase('What is in Bear\'s box? bat! balloon! buttons! bugs! And in the big box? Goodbye Bear!')">🔊 聽全部</button>
+      <button class="lyric-btn" style="background:#f0f0f0;color:#444;" onclick="resetLyrics()">🔄 再來一次</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px;font-weight:800;margin-bottom:10px;">🎤 唸謠（Chant）</div>
+    <div style="background:#FEF3E2;border-radius:12px;padding:16px;font-size:15px;font-weight:700;line-height:2.2;text-align:center;">
+      <span id="chantLine1" style="display:block;cursor:pointer;" onclick="speakPhrase('What is in Bears box? A bat!')">What is in Bear's box? → A <span style="color:var(--coral);">bat</span>! 🦇</span>
+      <span id="chantLine2" style="display:block;cursor:pointer;" onclick="speakPhrase('What is in Bears box? A balloon!')">What is in Bear's box? → A <span style="color:var(--coral);">balloon</span>! 🎈</span>
+      <span id="chantLine3" style="display:block;cursor:pointer;" onclick="speakPhrase('What is in Bears box? Buttons!')">What is in Bear's box? → <span style="color:var(--coral);">Buttons</span>! 🔘</span>
+      <span id="chantLine4" style="display:block;cursor:pointer;" onclick="speakPhrase('What is in Bears big box?')">What is in Bear's <span style="color:var(--coral);">big</span> box? 📦</span>
+    </div>
+    <div style="font-size:12px;color:#aaa;margin-top:8px;text-align:center;">👆 點擊每句可聆聽！</div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px;">🏆 跟唱挑戰</div>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div style="flex:1;min-width:200px;font-size:13px;color:#666;line-height:1.6;">
+        唱完一整首得 ⭐！連續唱3天解鎖小熊動畫！<br>
+        <span style="color:var(--coral);font-weight:800;">今天已唱次數：<span id="singCount">0</span> 次</span>
+      </div>
+      <button class="speak-btn" onclick="addSing()">🎤 我唱完了！</button>
+    </div>
+    <div class="star-row" style="justify-content:flex-start;margin-top:12px;">
+      <span class="star" id="ss1">⭐</span>
+      <span class="star" id="ss2">⭐</span>
+      <span class="star" id="ss3">⭐</span>
+      <span style="font-size:13px;color:#aaa;margin-left:4px;align-self:center;">唱3次全亮！</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TAB: GAMES ══ -->
+<div class="section" id="tab-games">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#FCE4EC;">🎮</div>
+    <div>
+      <div class="sec-title">一起玩遊戲！</div>
+      <div class="sec-sub">STEAMxPlay · 邊玩邊學 Bb</div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+    <span class="chip chip-s">🔬 Science</span>
+    <span class="chip chip-t">⚙️ Tech</span>
+    <span class="chip chip-e">🏗️ Engineering</span>
+    <span class="chip chip-a">🎨 Art</span>
+    <span class="chip chip-m">🔢 Math</span>
+  </div>
+
+  <div class="game-tabs">
+    <button class="gtab on" onclick="showGame('match')">🔗 B字配對</button>
+    <button class="gtab" onclick="showGame('spell')">🔤 聽音選圖</button>
+    <button class="gtab" onclick="showGame('trace')">✏️ 描字練習</button>
+    <button class="gtab" onclick="showGame('count')">🔢 數數遊戲</button>
+  </div>
+
+  <div class="game-area">
+
+    <!-- Match game -->
+    <div id="game-match">
+      <div style="font-size:14px;font-weight:800;margin-bottom:10px;">配對 Bb 的字和圖！</div>
+      <div class="bmatch-grid">
+        <div class="bmatch-col" id="bmWords"></div>
+        <div class="bmatch-col" id="bmPics"></div>
+      </div>
+      <div class="match-msg" id="matchMsg"></div>
+      <button style="margin-top:8px;padding:9px 22px;border-radius:30px;background:#f0f0f0;border:none;font-family:Nunito,sans-serif;font-weight:800;font-size:13px;cursor:pointer;" onclick="initMatchGame()">🔄 再玩一次</button>
+    </div>
+
+    <!-- Spell game -->
+    <div id="game-spell" style="display:none;">
+      <div style="font-size:14px;font-weight:800;margin-bottom:8px;">聽聲音，選出正確的圖！</div>
+      <div id="spellInner"></div>
+    </div>
+
+    <!-- Trace game -->
+    <div id="game-trace" style="display:none;">
+      <div class="trace-wrap">
+        <div class="trace-info">在下面的畫布裡練習寫 <strong>Bb</strong>！</div>
+        <div style="position:relative;display:inline-block;">
+          <canvas id="traceCanvas" width="340" height="220"></canvas>
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Fredoka One',cursive;font-size:100px;color:rgba(245,166,35,0.15);pointer-events:none;user-select:none;">Bb</div>
+        </div>
+        <div class="trace-tools">
+          <div style="background:#8B5E3C;border-radius:50%;width:28px;height:28px;cursor:pointer;border:3px solid transparent;" class="tc selected" data-c="#8B5E3C" onclick="setTraceColor(this)"></div>
+          <div style="background:#FF6B6B;border-radius:50%;width:28px;height:28px;cursor:pointer;" class="tc" data-c="#FF6B6B" onclick="setTraceColor(this)"></div>
+          <div style="background:#5DBB63;border-radius:50%;width:28px;height:28px;cursor:pointer;" class="tc" data-c="#5DBB63" onclick="setTraceColor(this)"></div>
+          <div style="background:#4FC3F7;border-radius:50%;width:28px;height:28px;cursor:pointer;" class="tc" data-c="#4FC3F7" onclick="setTraceColor(this)"></div>
+          <button class="t-btn" style="background:#f0f0f0;" onclick="clearTrace()">🗑️ 清除</button>
+          <button class="t-btn" style="background:var(--honey);color:white;" onclick="praiseTrace()">⭐ 完成！</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Count game -->
+    <div id="game-count" style="display:none;">
+      <div style="font-size:14px;font-weight:800;margin-bottom:8px;">🐻 箱子裡的 B！找出所有 B 開頭的字！</div>
+      <div style="font-size:13px;color:#888;margin-bottom:12px;">點擊所有以 <strong style="color:var(--coral);">B</strong> 開頭的字！</div>
+      <div id="countGrid" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;"></div>
+      <div id="countScore" style="font-size:15px;font-weight:800;color:var(--bear);">找到 0 個 B 字！</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ TAB: GUIDE ══ -->
+<div class="section" id="tab-guide">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#E3F2FD;">👨‍👩‍👧</div>
+    <div>
+      <div class="sec-title">爸媽陪讀指南</div>
+      <div class="sec-sub">每天 15 分鐘，輕鬆陪孩子愛上英文！</div>
+    </div>
+  </div>
+
+  <div class="guide-steps">
+    <div class="guide-step">
+      <div class="step-num">1</div>
+      <div class="step-label">🎧 閱讀前（3分鐘）</div>
+      <div class="step-desc">先看封面，猜猜故事內容。介紹 Bb 這個字母和它的 /b/ 聲音。</div>
+      <div class="step-phrase">"What do you see on the cover?" 封面上看到了什麼呢？</div>
+    </div>
+    <div class="guide-step" style="border-color:var(--sky);">
+      <div class="step-num" style="color:var(--sky);">2</div>
+      <div class="step-label">📖 閱讀中（5分鐘）</div>
+      <div class="step-desc">邊看圖邊說內容，點讀笔或跟著故事，翻頁找 B 的字。</div>
+      <div class="step-phrase">"What is in Bear's box?" 小熊的箱子裡有什麼？</div>
+    </div>
+    <div class="guide-step" style="border-color:var(--grass);">
+      <div class="step-num" style="color:var(--grass);">3</div>
+      <div class="step-label">✅ 閱讀後（5分鐘）</div>
+      <div class="step-desc">問問孩子記得什麼，一起唱歌謠，用身體做出 Bb！</div>
+      <div class="step-phrase">"Let's sing the song together!" 一起唱歌吧！</div>
+    </div>
+    <div class="guide-step" style="border-color:var(--purple);">
+      <div class="step-num" style="color:var(--purple);">4</div>
+      <div class="step-label">🎮 STEAMxPlay（延伸）</div>
+      <div class="step-desc">玩本頁遊戲，或做下面的生活活動，讓 Bb 融入日常！</div>
+      <div class="step-phrase">"Can you find B words at home?" 家裡找得到 B 的字嗎？</div>
+    </div>
+  </div>
+
+  <div style="font-size:16px;font-weight:800;margin:24px 0 12px;">🌟 STEAMxPlay 生活延伸活動</div>
+
+  <div class="activity-card">
+    <div class="act-icon">🔬</div>
+    <div>
+      <span class="act-label" style="background:#E3F2FD;color:#1565C0;">Science</span>
+      <div class="act-title">氣球吹吹看！</div>
+      <div class="act-desc">吹氣球時感受嘴巴吐氣的感覺，就跟 /b/ 的發音一樣！讓孩子邊吹邊說 /b/ /b/ /b/，體驗聲音和氣流的關係。</div>
+    </div>
+  </div>
+  <div class="activity-card">
+    <div class="act-icon">🏗️</div>
+    <div>
+      <span class="act-label" style="background:#E8F5E9;color:#2E7D32;">Engineering</span>
+      <div class="act-title">打造 Bear's Box！</div>
+      <div class="act-desc">找一個紙盒，讓孩子自己裝入所有 B 開頭的東西（ball, book, banana...），打造自己的神秘箱子！</div>
+    </div>
+  </div>
+  <div class="activity-card">
+    <div class="act-icon">🎨</div>
+    <div>
+      <span class="act-label" style="background:#FFF3E0;color:#E65100;">Art</span>
+      <div class="act-title">畫出 Bear's Box！</div>
+      <div class="act-desc">畫一個大箱子，在裡面畫出所有 B 開頭的東西！bat（蝙蝠/球棒）、bug（小蟲）、balloon（氣球）…隨便孩子發揮！</div>
+    </div>
+  </div>
+  <div class="activity-card">
+    <div class="act-icon">🔢</div>
+    <div>
+      <span class="act-label" style="background:#FCE4EC;color:#AD1457;">Math</span>
+      <div class="act-title">數一數 B 有幾個！</div>
+      <div class="act-desc">翻開繪本，數一數書中有幾個 B 開頭的字！每找到一個，在紙上畫一個圈。比比看誰找到最多！</div>
+    </div>
+  </div>
+
+  <div class="card" style="background:#FEF3E2;margin-top:4px;">
+    <div style="font-size:14px;font-weight:800;margin-bottom:8px;">📚 推薦延伸繪本</div>
+    <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;color:#666;">
+      <div>🐛 <em>The Grouchy Ladybug</em> — Eric Carle（找出 B 的字）</div>
+      <div>🦣 <em>The Gruffalo</em> — Julia Donaldson（動物故事延伸）</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TAB: PROGRESS ══ -->
+<div class="section" id="tab-progress">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#E8F5E9;">🏆</div>
+    <div>
+      <div class="sec-title">我的學習進度</div>
+      <div class="sec-sub">Book 1 · Bear's Box · Bb</div>
+    </div>
+  </div>
+
+  <div class="progress-hero">
+    <div class="prog-num">1 / 36</div>
+    <div class="prog-label">書本完成度（全套36本）</div>
+    <div class="prog-bar-wrap"><div class="prog-bar" id="progBar"></div></div>
+    <div class="streak-row">
+      <div class="day-dot done">一</div>
+      <div class="day-dot done">二</div>
+      <div class="day-dot today">三</div>
+      <div class="day-dot">四</div>
+      <div class="day-dot">五</div>
+      <div class="day-dot">六</div>
+      <div class="day-dot">日</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px;">
+    <div style="background:white;border-radius:var(--r);box-shadow:var(--shadow);padding:18px;text-align:center;">
+      <div style="font-size:36px;margin-bottom:6px;">🔥</div>
+      <div style="font-family:'Fredoka One',cursive;font-size:32px;color:var(--honey);" id="streakNum">3</div>
+      <div style="font-size:12px;color:#aaa;font-weight:700;">連續學習天數</div>
+    </div>
+    <div style="background:white;border-radius:var(--r);box-shadow:var(--shadow);padding:18px;text-align:center;">
+      <div style="font-size:36px;margin-bottom:6px;">⭐</div>
+      <div style="font-family:'Fredoka One',cursive;font-size:32px;color:var(--gold);" id="totalStars">8</div>
+      <div style="font-size:12px;color:#aaa;font-weight:700;">累積星星</div>
+    </div>
+    <div style="background:white;border-radius:var(--r);box-shadow:var(--shadow);padding:18px;text-align:center;">
+      <div style="font-size:36px;margin-bottom:6px;">🎮</div>
+      <div style="font-family:'Fredoka One',cursive;font-size:32px;color:var(--coral);" id="gamesPlayed">4</div>
+      <div style="font-size:12px;color:#aaa;font-weight:700;">遊戲完成次數</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px;font-weight:800;margin-bottom:12px;">📋 Book 1 完成清單</div>
+    <div id="checklist" style="display:flex;flex-direction:column;gap:8px;"></div>
+  </div>
+
+  <div class="card" style="background:linear-gradient(135deg,#FFF8F0,white);margin-top:0;">
+    <div style="font-size:14px;font-weight:800;margin-bottom:10px;">🐻 熊的動物夥伴</div>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div style="font-size:56px;">🐻</div>
+      <div>
+        <div style="font-size:15px;font-weight:800;margin-bottom:4px;">Bear — 已解鎖！</div>
+        <div style="font-size:13px;color:#666;">完成 Book 1 的第一位夥伴！<br>繼續學習來解鎖更多動物朋友！</div>
+        <div style="margin-top:8px;font-size:20px;filter:grayscale(1);">🐱 🦆 🐑 🦓 🐯 🦖</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-title">🐻 JPR Book 1 · Bear's Box</div>
+  <div class="footer-sub">STEAMxPlay 親子英文學習 · 每天一起玩！</div>
+</div>
+
+<!-- SCORE POPUP -->
+<div class="score-pop" id="scorePop">
+  <span class="pop-emoji" id="popEmoji">🎉</span>
+  <div class="pop-title" id="popTitle">太棒了！</div>
+  <div class="pop-sub" id="popSub">+3 顆星星！</div>
+  <button class="pop-close" onclick="document.getElementById('scorePop').classList.remove('show')">繼續！</button>
+</div>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────
+const words = [
+  {emoji:'🦇',en:'bat',zh:'球棒/蝙蝠'},
+  {emoji:'🎈',en:'balloon',zh:'氣球'},
+  {emoji:'🔘',en:'buttons',zh:'釦子'},
+  {emoji:'🐛',en:'bug',zh:'小蟲'},
+  {emoji:'🐝',en:'bee',zh:'蜜蜂'},
+  {emoji:'🧸',en:'bear',zh:'熊'},
+  {emoji:'📦',en:'box',zh:'箱子'},
+  {emoji:'🏀',en:'ball',zh:'球'},
+  {emoji:'🍌',en:'banana',zh:'香蕉'},
+  {emoji:'🚌',en:'bus',zh:'公車'},
+  {emoji:'🦋',en:'butterfly',zh:'蝴蝶'},
+  {emoji:'📚',en:'book',zh:'書'},
+];
+
+const storyPages = [
+  {art:'📦🐻',color:'#FEF3E2',page:'封面',en:"What is in Bear's Box?",zh:'小熊的箱子裡有什麼？'},
+  {art:'🦇',color:'#E3F2FD',page:'Page 1',en:"What is in Bear's box? A bat!",zh:'箱子裡有什麼？有球棒！'},
+  {art:'🎈',color:'#FCE4EC',page:'Page 2',en:"What is in Bear's box? A balloon!",zh:'箱子裡有什麼？有氣球！'},
+  {art:'🔘',color:'#E8F5E9',page:'Page 3',en:"What is in Bear's box? Buttons!",zh:'箱子裡有什麼？有好多釦子！'},
+  {art:'🐛',color:'#FFF3E0',page:'Page 4',en:"What is in Bear's box? Bugs!",zh:'箱子裡有什麼？有小蟲！'},
+  {art:'📦🐣',color:'#F3E5F5',page:'最後一頁',en:"But what is in Bear's BIG box?",zh:'但是大箱子裡有什麼呢？'},
+  {art:'👋🐻',color:'#E8F5E9',page:'再見',en:"Goodbye, Bear!",zh:'再見，小熊！'},
+];
+
+const lyricsData = [
+  "What is in <b>Bear</b>'s <b>box</b>?",
+  "A <b>bat</b>! A <b>bat</b>! A <b>bat</b>!",
+  "What is in <b>Bear</b>'s <b>box</b>?",
+  "A <b>balloon</b>! <b>Balloon</b>!",
+  "<b>Buttons</b>, <b>bugs</b>, <b>bee</b>!",
+  "<b>B</b>-<b>B</b>-<b>B</b>, can you say it with me?",
+  "<b>Bye</b>-<b>bye</b>, <b>Bear</b>! <b>Bye</b>-<b>bye</b>!",
+];
+
+const matchPairs = [
+  {word:'bat 🦇',pic:'🦇',key:'bat'},
+  {word:'bee 🐝',pic:'🐝',key:'bee'},
+  {word:'box 📦',pic:'📦',key:'box'},
+  {word:'ball 🏀',pic:'🏀',key:'ball'},
+];
+
+const spellQuestions = [
+  {word:'BAT',emoji:'🦇',opts:['🦇','🐱','🐟','🐸'],ans:0},
+  {word:'BEE',emoji:'🐝',opts:['🦋','🐝','🐛','🐞'],ans:1},
+  {word:'BALL',emoji:'🏀',opts:['⚽','🎾','🏀','🏈'],ans:2},
+  {word:'BUS',emoji:'🚌',opts:['🚗','🚂','🚌','✈️'],ans:3},
+];
+
+const countWords = [
+  {w:'bat',isB:true},{w:'cat',isB:false},{w:'bee',isB:true},
+  {w:'dog',isB:false},{w:'box',isB:true},{w:'sun',isB:false},
+  {w:'bus',isB:true},{w:'red',isB:false},{w:'ball',isB:true},
+  {w:'fish',isB:false},{w:'bird',isB:true},{w:'tree',isB:false},
+];
+
+const checklistItems = [
+  '🎧 聽歌曲3遍','📖 閱讀繪本一次','🔤 認識字母 Bb',
+  '🎵 唱歌謠一次','🎮 完成一個遊戲','✏️ 練習寫 Bb','⭐ 分享給社群'
+];
+
+// ─── TAB ─────────────────────────────────────────────────────
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  if(id==='games') initMatchGame(), initSpellGame(), initTraceGame(), initCountGame();
+  if(id==='progress') animateProgress();
+  if(id==='words') renderWords();
+  if(id==='story') renderStory();
+  if(id==='song') renderLyrics();
+}
+
+// ─── TYPECAST PHONICS AUDIO ENGINE ───────────────────────────
+// 聲音：Ella（#Audiobook · English）
+// Voice ID：tc_67d3b089782cabcc61569530
+// Model：ssfm-v30（最新最自然）
+// 自然發音法原則：播字母的「聲音」，絕不播字母名稱
+
+const TC_API_URL  = '/api/tts'; // Vercel proxy（API Key 安全存在伺服器）
+
+// 音檔快取，避免同一個詞重複呼叫 API
+const audioCache = {};
+let currentAudio = null;
+
+// ── 核心 TypeCast TTS 函式 ──
+async function typecastSpeak(text, options = {}) {
+  const cacheKey = text + JSON.stringify(options);
+
+  // 停止當前播放
+  if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+
+  // 從快取取音檔
+  if (audioCache[cacheKey]) {
+    currentAudio = new Audio(audioCache[cacheKey]);
+    currentAudio.play();
+    return;
+  }
+
+  // 顯示載入中動畫
+  showPhonicsWave();
+
+  try {
+    const res = await fetch(TC_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text: text,
+        emotion: options.emotion || 'happy',
+        tempo: options.tempo || 0.85
+      })
+    });
+
+    if (!res.ok) throw new Error(`TypeCast API error: ${res.status}`);
+
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    audioCache[cacheKey] = url; // 存入快取
+
+    currentAudio = new Audio(url);
+    currentAudio.play();
+
+  } catch (err) {
+    console.warn('TypeCast TTS 失敗，改用瀏覽器 TTS:', err);
+    ttsFallback(text);
+  }
+}
+
+// 瀏覽器 TTS 備用
+function ttsFallback(text) {
+  if (!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US'; u.rate = 0.75;
+  speechSynthesis.speak(u);
+}
+
+// ── 字母 Phonics 示範 ──
+// 唸 "b... b... b... bat. bee. bear." — 強調 /b/ 在字首的聲音
+// 注意：唸的是完整單字，讓孩子從真實詞中聽到 b 的聲音
+// Ella 的 happy 語氣讓示範活潑吸引孩子
+function speakLetter() {
+  showPhonicsWave();
+  typecastSpeak('b... b... b... bat. bee. bear.', {
+    emotion: 'happy',
+    intensity: 1.3,
+    tempo: 0.8
+  });
+}
+
+// ── 單字卡點擊：先強調首音，再唸完整單字 ──
+function speakPhonicsWord(word) {
+  typecastSpeak(`${word[0]}... ${word}.`, {
+    emotion: 'happy',
+    intensity: 1.2,
+    tempo: 0.82
+  });
+}
+
+// ── /b/ 聲示範（單純播首音 × N 次）──
+function playBSound(times, cb) {
+  const phrase = Array(times || 1).fill('b...').join(' ') + ' bat.';
+  typecastSpeak(phrase, { emotion: 'happy', tempo: 0.85 });
+  if (cb) setTimeout(cb, (times || 1) * 800);
+}
+
+// ── 故事句子 / 完整句語音 ──
+function speakPhrase(text) {
+  typecastSpeak(text, { emotion: 'happy', intensity: 1.0, tempo: 0.88 });
+}
+
+// ── 單純慢速唸單字 ──
+function speakWord(word) {
+  typecastSpeak(word, { emotion: 'normal', tempo: 0.78 });
+}
+
+// 音波視覺動畫
+function showPhonicsWave() {
+  const el = document.getElementById('phonicsWaveAnim');
+  if (!el) return;
+  el.style.opacity = '1';
+  el.style.transform = 'scale(1.3)';
+  setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'scale(1)'; }, 900);
+}
+
+// ─── WORDS ───────────────────────────────────────────────────
+function renderWords() {
+  const g = document.getElementById('wordGrid');
+  if(g.children.length) return;
+  words.forEach(w=>{
+    const bWord = '<span class="word-b">'+w.en[0]+'</span>'+w.en.slice(1);
+    g.innerHTML+=`<div class="word-card" onclick="speakPhonicsWord('${w.en}')">
+      <span class="word-emoji">${w.emoji}</span>
+      <span class="word-en">${bWord}</span>
+      <span class="word-zh">${w.zh}</span>
+    </div>`;
+  });
+}
+
+// ─── STORY ───────────────────────────────────────────────────
+function renderStory() {
+  const g = document.getElementById('storyGrid');
+  if(g.children.length) return;
+  storyPages.forEach(p=>{
+    g.innerHTML+=`<div class="story-panel" onclick="speakPhrase('${p.en}')">
+      <div class="panel-art" style="background:${p.color};">${p.art}</div>
+      <div class="panel-body">
+        <div class="panel-page">${p.page}</div>
+        <div class="panel-text">${p.en}</div>
+        <div class="panel-zh">${p.zh}</div>
+        <button class="play-chip">🔊 聽聽看</button>
+      </div>
+    </div>`;
+  });
+}
+
+// ─── LYRICS ──────────────────────────────────────────────────
+function renderLyrics() {
+  const c = document.getElementById('lyricsInner');
+  if(c.children.length) return;
+  lyricsData.forEach((l,i)=>{
+    const d = document.createElement('div');
+    d.className='lyrics-line';
+    d.innerHTML=l;
+    d.style.animationDelay=(i*0.1)+'s';
+    c.appendChild(d);
+  });
+}
+let singC=0;
+function playLyrics(){
+  const plain = lyricsData.map(l=>l.replace(/<[^>]+>/g,'')).join('. ');
+  speakPhrase(plain);
+}
+function resetLyrics(){document.getElementById('lyricsInner').innerHTML='';renderLyrics();}
+function addSing(){
+  singC=Math.min(singC+1,3);
+  document.getElementById('singCount').textContent=singC;
+  ['ss1','ss2','ss3'].forEach((id,i)=>{
+    document.getElementById(id).classList.toggle('on',i<singC);
+  });
+  if(singC===3) showPop('🎤','唱歌王！','連唱3次！+10 星星！');
+  else showPop('🎵','很棒！','再唱 '+(3-singC)+' 次解鎖獎勵！');
+}
+
+// ─── GAMES ───────────────────────────────────────────────────
+function showGame(id) {
+  ['match','spell','trace','count'].forEach(g=>{
+    document.getElementById('game-'+g).style.display = g===id?'block':'none';
+  });
+  document.querySelectorAll('.gtab').forEach((t,i)=>{
+    t.classList.toggle('on',['match','spell','trace','count'][i]===id);
+  });
+}
+
+// Match
+let mSel1=null,mSel2=null,mPairs=0;
+function initMatchGame(){
+  mSel1=null;mSel2=null;mPairs=0;
+  const wc=document.getElementById('bmWords');
+  const pc=document.getElementById('bmPics');
+  wc.innerHTML='';pc.innerHTML='';
+  document.getElementById('matchMsg').textContent='';
+  const shuffledP=[...matchPairs].sort(()=>Math.random()-0.5);
+  matchPairs.forEach(d=>{
+    const el=document.createElement('div');
+    el.className='bm-item';el.textContent=d.word;
+    el.dataset.key=d.key;el.dataset.type='word';
+    el.onclick=()=>selectBM(el);
+    wc.appendChild(el);
+  });
+  shuffledP.forEach(d=>{
+    const el=document.createElement('div');
+    el.className='bm-item';el.textContent=d.pic;
+    el.dataset.key=d.key;el.dataset.type='pic';
+    el.onclick=()=>selectBM(el);
+    pc.appendChild(el);
+  });
+}
+function selectBM(el){
+  if(el.classList.contains('matched')) return;
+  if(el.dataset.type==='word'){if(mSel1) mSel1.classList.remove('sel');mSel1=el;}
+  else{if(mSel2) mSel2.classList.remove('sel');mSel2=el;}
+  el.classList.add('sel');
+  if(mSel1&&mSel2){
+    if(mSel1.dataset.key===mSel2.dataset.key){
+      mSel1.classList.remove('sel');mSel2.classList.remove('sel');
+      mSel1.classList.add('matched');mSel2.classList.add('matched');
+      speakPhonicsWord(mSel1.dataset.key);
+      mPairs++;mSel1=null;mSel2=null;
+      if(mPairs===matchPairs.length){document.getElementById('matchMsg').textContent='🎉 全部配對成功！+5 ⭐';showPop('🎉','完美配對！','全部配對成功！+5 星星');}
+    } else {
+      setTimeout(()=>{
+        mSel1.classList.remove('sel');mSel2.classList.remove('sel');
+        mSel1=null;mSel2=null;
+      },500);
+    }
+  }
+}
+
+// Spell
+let sqIdx=0,sqScore=0;
+function initSpellGame(){sqIdx=0;sqScore=0;renderSpell();}
+function renderSpell(){
+  const q=spellQuestions[sqIdx];
+  document.getElementById('spellInner').innerHTML=`
+    <div style="background:#FEF3E2;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:800;color:#8B5E3C;margin-bottom:10px;">
+      🔊 點選正確圖片後，會先播 <strong>/b/</strong> 爆破音，再慢速唸出整個單字！
+    </div>
+    <div class="spell-word">${q.word}</div>
+    <div class="spell-hint">這個字的開頭是 <strong style="color:var(--coral);">B → /b/</strong>！選出正確的圖片</div>
+    <div class="spell-opts">
+      ${q.opts.map((o,i)=>`<button class="spell-opt" onclick="checkSpell(${i})">${o}</button>`).join('')}
+    </div>
+    <div style="text-align:center;font-size:13px;color:#aaa;margin-top:8px;">第 ${sqIdx+1}/${spellQuestions.length} 題 · ⭐ ${sqScore}</div>`;
+}
+function checkSpell(i){
+  const q=spellQuestions[sqIdx];
+  const opts=document.querySelectorAll('.spell-opt');
+  opts[i].classList.add(i===q.ans?'correct':'wrong');
+  if(i===q.ans){sqScore++;speakPhonicsWord(q.word.toLowerCase());}
+  setTimeout(()=>{
+    sqIdx=(sqIdx+1)%spellQuestions.length;
+    renderSpell();
+    if(sqScore===spellQuestions.length) showPop('🏆','全對！','+8 星星！太厲害了！');
+  },800);
+}
+
+// Trace
+let tCtx,tPainting=false,tColor='#8B5E3C';
+function initTraceGame(){
+  const c=document.getElementById('traceCanvas');
+  if(!c) return;
+  tCtx=c.getContext('2d');
+  tCtx.lineJoin='round';tCtx.lineCap='round';
+  c.addEventListener('mousedown',e=>{tPainting=true;trDraw(e);});
+  c.addEventListener('mousemove',e=>{if(tPainting)trDraw(e);});
+  c.addEventListener('mouseup',()=>{tPainting=false;tCtx.beginPath();});
+  c.addEventListener('touchstart',e=>{tPainting=true;trDraw(e.touches[0]);e.preventDefault();},{passive:false});
+  c.addEventListener('touchmove',e=>{if(tPainting)trDraw(e.touches[0]);e.preventDefault();},{passive:false});
+  c.addEventListener('touchend',()=>{tPainting=false;tCtx.beginPath();});
+}
+function trDraw(e){
+  const c=document.getElementById('traceCanvas');
+  const r=c.getBoundingClientRect();
+  const x=(e.clientX-r.left)*(c.width/r.width);
+  const y=(e.clientY-r.top)*(c.height/r.height);
+  tCtx.strokeStyle=tColor;tCtx.lineWidth=10;
+  tCtx.lineTo(x,y);tCtx.stroke();
+  tCtx.beginPath();tCtx.moveTo(x,y);
+}
+function setTraceColor(el){
+  document.querySelectorAll('.tc').forEach(t=>t.style.borderColor='transparent');
+  el.style.borderColor='#333';tColor=el.dataset.c;
+  if(tCtx) tCtx.beginPath();
+}
+function clearTrace(){
+  const c=document.getElementById('traceCanvas');
+  if(tCtx) tCtx.clearRect(0,0,c.width,c.height);
+  if(tCtx) tCtx.beginPath();
+}
+function praiseTrace(){showPop('✏️','寫得很棒！','Bb 越寫越漂亮！+3 ⭐');}
+
+// Count
+let cFound=0;
+function initCountGame(){
+  cFound=0;
+  const g=document.getElementById('countGrid');
+  g.innerHTML='';
+  document.getElementById('countScore').textContent='找到 0 個 B 字！';
+  const shuffled=[...countWords].sort(()=>Math.random()-0.5);
+  shuffled.forEach(d=>{
+    const el=document.createElement('span');
+    el.textContent=d.w;
+    el.style.cssText=`padding:10px 18px;border-radius:12px;border:2.5px solid #eee;
+      background:#fafafa;font-size:16px;font-weight:800;cursor:pointer;
+      transition:all 0.15s;display:inline-block;`;
+    el.onclick=()=>{
+      if(el.dataset.done) return;
+      el.dataset.done='1';
+      if(d.isB){
+        el.style.background='#FFD93D';el.style.borderColor='var(--honey)';el.style.color='#4a3500';
+        cFound++;
+        speakPhonicsWord(d.w);
+        document.getElementById('countScore').textContent=`找到 ${cFound} 個 B 字！⭐`;
+        if(cFound===countWords.filter(x=>x.isB).length) showPop('🔢','全找到了！','所有 B 的字都找出來了！+5 ⭐');
+      } else {
+        el.style.background='#FFEBEE';el.style.borderColor='var(--coral)';
+        setTimeout(()=>{el.style.background='#fafafa';el.style.borderColor='#eee';delete el.dataset.done;},600);
+      }
+    };
+    g.appendChild(el);
+  });
+}
+
+// ─── PROGRESS ────────────────────────────────────────────────
+function animateProgress(){
+  setTimeout(()=>{document.getElementById('progBar').style.width='3%';},100);
+  const cl=document.getElementById('checklist');
+  if(cl.children.length) return;
+  checklistItems.forEach((item,i)=>{
+    const div=document.createElement('div');
+    div.style.cssText='display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;cursor:pointer;';
+    div.innerHTML=`<div style="width:22px;height:22px;border-radius:6px;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;" id="cb${i}"></div>
+      <div style="font-size:13px;font-weight:700;">${item}</div>`;
+    div.onclick=()=>toggleCheck(i);
+    cl.appendChild(div);
+  });
+}
+const checked=new Set();
+function toggleCheck(i){
+  const cb=document.getElementById('cb'+i);
+  if(checked.has(i)){checked.delete(i);cb.style.background='';cb.style.borderColor='#ddd';cb.textContent='';}
+  else{checked.add(i);cb.style.background='var(--grass)';cb.style.borderColor='var(--grass)';cb.innerHTML='✓';cb.style.color='white';
+    if(checked.size===checklistItems.length) showPop('🏆','全部完成！','Book 1 完美達成！Bear 已解鎖！');}
+}
+
+// ─── POPUP ────────────────────────────────────────────────────
+function showPop(emoji,title,sub){
+  const p=document.getElementById('scorePop');
+  document.getElementById('popEmoji').textContent=emoji;
+  document.getElementById('popTitle').textContent=title;
+  document.getElementById('popSub').textContent=sub;
+  p.classList.add('show');
+  document.getElementById('totalStars').textContent=
+    parseInt(document.getElementById('totalStars').textContent||'8')+3;
+  setTimeout(()=>p.classList.remove('show'),4000);
+}
+
+// ─── INIT ─────────────────────────────────────────────────────
+renderWords();
+renderStory();
+renderLyrics();
+initMatchGame();
+initSpellGame();
+initTraceGame();
+initCountGame();
+setTimeout(()=>{
+  const pb=document.getElementById('progBar');
+  if(pb) pb.style.width='3%';
+},300);
+</script>
+</body>
+</html>
