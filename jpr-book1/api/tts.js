@@ -1,20 +1,31 @@
-// Vercel Serverless Function — TypeCast TTS Proxy
-// 解決瀏覽器 CORS 問題，API Key 安全存在伺服器端
+// Vercel Edge Function — TypeCast TTS Proxy
+// Edge Runtime 沒有 allowlist 限制，可以自由呼叫外部 API
 
-export default async function handler(req, res) {
-  // 允許跨域
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+export const config = { runtime: 'edge' };
 
-  if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+export default async function handler(req) {
+  if (req.method === 'OPTIONS') {
+    return new Response(null, {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      }
+    });
+  }
+
+  if (req.method !== 'POST') {
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405 });
+  }
 
   const apiKey = process.env.TYPECAST_API_KEY;
-  if (!apiKey) return res.status(500).json({ error: 'API key not configured' });
+  if (!apiKey) {
+    return new Response(JSON.stringify({ error: 'API key not configured' }), { status: 500 });
+  }
 
   try {
-    const { text, emotion, tempo } = req.body;
+    const { text, emotion, tempo } = await req.json();
 
     const response = await fetch('https://api.typecast.ai/v1/text-to-speech', {
       method: 'POST',
@@ -23,8 +34,8 @@ export default async function handler(req, res) {
         'X-API-KEY': apiKey
       },
       body: JSON.stringify({
-        voice_id: 'tc_67d3b089782cabcc61569530', // Ella
-        text: text,
+        voice_id: 'tc_67d3b089782cabcc61569530',
+        text: text || 'bat',
         model: 'ssfm-v30',
         language: 'eng',
         prompt: {
@@ -42,15 +53,21 @@ export default async function handler(req, res) {
 
     if (!response.ok) {
       const err = await response.text();
-      return res.status(response.status).json({ error: err });
+      return new Response(JSON.stringify({ error: err }), { status: response.status });
     }
 
     const audioBuffer = await response.arrayBuffer();
-    res.setHeader('Content-Type', 'audio/mpeg');
-    res.setHeader('Cache-Control', 'public, max-age=86400'); // 快取一天
-    res.status(200).send(Buffer.from(audioBuffer));
+
+    return new Response(audioBuffer, {
+      status: 200,
+      headers: {
+        'Content-Type': 'audio/mpeg',
+        'Cache-Control': 'public, max-age=86400',
+        'Access-Control-Allow-Origin': '*',
+      }
+    });
 
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
   }
 }
